@@ -1,0 +1,17 @@
+#!/bin/bash
+# source ~/bin/clockinclockout/writeTime
+source ./clockinclockout/writeTime
+
+filename=./clockinclockout/$(date +"%F").txt
+if test -f "$filename"; then
+  while read line; do
+  echo $line
+  done < $filename
+  echo "hello"
+fi
+write_time ci
+
+time=$(date +"%R")
+echo "Welcome back! Clocked in at $time"
+
+
