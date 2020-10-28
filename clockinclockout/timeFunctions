@@ -2,9 +2,8 @@
 
 write_time() {
   now=$(date +"%s")
-  file_name=$(date +"%F").txt
 #  echo "$1 $now" >> ~/bin/clockinclockout/$file_name
-  echo "$1 $now" >> ./clockinclockout/$file_name
+  echo "$1 $now" >> $(get_recent_file_name)
 }
 
 calculate_time() {
@@ -30,10 +29,28 @@ calculate_time() {
   fi
 }
 
+get_recent_file_name() {
+  fileName=$(date +"%F").txt
+  echo ./clockinclockout/$fileName
+}
+
 convert_secs() {
   time=$1
   hours=$((time/3600))
   minutes=$(((time/60)%60))
   seconds=$((time%60))
   echo $hours:$minutes:$seconds
+}
+
+get_last_line() {
+  filename=$(get_recent_file_name)
+  if test -f "$filename"; then
+  lastLine=""
+  while read line; do
+    lastLine=$line
+  done < $filename
+  echo $lastLine
+  else
+    echo 
+  fi
 }

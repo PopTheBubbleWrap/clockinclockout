@@ -2,13 +2,9 @@
 # source ~/bin/clockinclockout/timeFunctions
 source ./clockinclockout/timeFunctions
 
-filename=./clockinclockout/$(date +"%F").txt
-lastLine=""
+filename=$(get_recent_file_name)
 if test -f "$filename"; then
-  while read line; do
-    lastLine=$line
-  done < $filename
-
+  lastLine=$(get_last_line)
   read -a str_arr <<< "$lastLine"
   if [ ${str_arr[0]} == "ci" ]; then
     result=$(convert_secs $(calculate_time))
