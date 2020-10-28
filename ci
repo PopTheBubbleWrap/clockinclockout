@@ -5,8 +5,7 @@ source ./clockinclockout/timeFunctions
 filename=$(get_recent_file_name)
 if test -f "$filename"; then
   lastLine=$(get_last_line)
-  read -a str_arr <<< "$lastLine"
-  if [ ${str_arr[0]} == "ci" ]; then
+  if [ $lastLine  == "ci" ]; then
     result=$(convert_secs $(calculate_time))
     echo "You're already clocked in and been working for $result"
     exit 0

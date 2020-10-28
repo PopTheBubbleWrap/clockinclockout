@@ -45,11 +45,13 @@ convert_secs() {
 get_last_line() {
   filename=$(get_recent_file_name)
   if test -f "$filename"; then
-  lastLine=""
-  while read line; do
-    lastLine=$line
-  done < $filename
-  echo $lastLine
+    lastLine=""
+    while read line; do
+      lastLine=$line
+    done < $filename
+
+    read -a str_arr <<< "$lastLine"
+    echo ${str_arr[0]}
   else
     echo 
   fi

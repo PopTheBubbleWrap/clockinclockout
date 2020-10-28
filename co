@@ -2,4 +2,11 @@
 # source ~/bin/clockinclockout/timeFunctions
 source ./clockinclockout/timeFunctions
 
-
+lastLine=$(get_last_line)
+if [ $lastLine == "ci" ]; then
+  write_time co
+  result=$(convert_secs $(calculate_time))
+  echo "You've clocked-out after working for $result"
+else
+  echo "You haven't clocked-in, to clock-in enter \"ci\""
+fi
