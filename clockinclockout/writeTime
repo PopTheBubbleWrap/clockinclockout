@@ -1,8 +1,0 @@
-#!/bin/bash
-
-write_time() {
-  now=$(date +"%s")
-  file_name=$(date +"%F").txt
-#  echo "$1 $now" >> ~/bin/clockinclockout/$file_name
-  echo "$1 $now" >> ./clockinclockout/$file_name
-}

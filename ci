@@ -1,6 +1,6 @@
 #!/bin/bash
-# source ~/bin/clockinclockout/writeTime
-source ./clockinclockout/writeTime
+# source ~/bin/clockinclockout/timeFunctions
+source ./clockinclockout/timeFunctions
 
 filename=./clockinclockout/$(date +"%F").txt
 lastLine=""
@@ -11,7 +11,9 @@ if test -f "$filename"; then
 
   read -a str_arr <<< "$lastLine"
   if [ ${str_arr[0]} == "ci" ]; then
-    echo "You're already clocked in and been working for X"
+    result=$(calculate_time)
+    echo "You're already clocked in and been working for $result"
+    exit 0
   fi
 fi
 
