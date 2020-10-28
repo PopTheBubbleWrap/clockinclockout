@@ -6,12 +6,15 @@ filename=./clockinclockout/$(date +"%F").txt
 lastLine=""
 if test -f "$filename"; then
   while read line; do
-  echo $line
-  lastLine=$line
+    lastLine=$line
   done < $filename
-  echo "hello"
+
+  read -a str_arr <<< "$lastLine"
+  if [ ${str_arr[0]} == "ci" ]; then
+    echo "You're already clocked in and been working for X"
+  fi
 fi
-echo $lastLine
+
 write_time ci
 
 time=$(date +"%R")
