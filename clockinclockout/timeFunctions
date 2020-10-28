@@ -29,3 +29,11 @@ calculate_time() {
     return 0
   fi
 }
+
+convert_secs() {
+  time=$1
+  hours=$((time/3600))
+  minutes=$(((time/60)%60))
+  seconds=$((time%60))
+  echo $hours:$minutes:$seconds
+}

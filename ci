@@ -11,7 +11,7 @@ if test -f "$filename"; then
 
   read -a str_arr <<< "$lastLine"
   if [ ${str_arr[0]} == "ci" ]; then
-    result=$(calculate_time)
+    result=$(convert_secs $(calculate_time))
     echo "You're already clocked in and been working for $result"
     exit 0
   fi
